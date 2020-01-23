@@ -123,8 +123,8 @@ def calculateClassifier(test_X, classA, classB):
             count1 = count1 + 1
         elif (value > (classB[i])[0,1]) and (value < (classB[i])[0,2]):
             count2 = count2 + 1 
-        elif (value > (classA[i])[0,2]) and (value < (classB[i])[0,1]):
-            if (abs(value - (classA[i])[0,2])) > (abs(value - (classB[i])[0,1])):
+        elif (value > (classA[i])[0,1]) and (value < (classB[i])[0,1]):
+            if (abs(value - (classA[i])[0,1])) > (abs(value - (classB[i])[0,1])):
                 count2 = count2 + 1
             else: 
                 count1 = count1 + 1
