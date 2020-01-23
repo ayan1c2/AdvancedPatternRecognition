@@ -56,7 +56,6 @@ def Dtree(data,originaldata,features,target_attribute_name = target_col_name,par
         #Set the default value for this node --> The mode target feature value of the current node
         parent_node_class = np.unique(data[target_attribute_name])[np.argmax(np.unique(data[target_attribute_name],return_counts=True)[1])]
         
-              
         #Select the feature which best splits the dataset
         item_values = [InfoGain(data,feature,target_attribute_name) for feature in features] #Return the information gain values for the features in the dataset
         best_feature_index = np.argmax(item_values)

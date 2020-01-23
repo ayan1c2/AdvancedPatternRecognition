@@ -39,9 +39,11 @@ def get_binary(dataset):
 
 #####################################################################################################################################################################
 #read Data
-dataset = pd.read_csv("../data/glass_artificial.csv", sep=',', low_memory=False)
+dataset = pd.read_csv("glass_artificial.csv", sep=',', low_memory=False)
 dataset = dataset.iloc[:, 1:].values
 
+dataset = pd.read_csv("glass.data", sep=',', low_memory=False)
+dataset = dataset.iloc[:, 1:].values
 dataset = pd.DataFrame(dataset, columns = cols)
 data = get_binary(dataset)  
 #print (dataset)
@@ -78,7 +80,7 @@ splitArray = np.split(data[:(fold*foldSize),:], fold)
 ################################################################################################################################################
 
 #call method
-print ("For fold starts for Artificial Glass DT: ")
+print ("For fold starts for optimal bayesian")
 accuracy = []
 for i in range(fold-1):    
     
@@ -87,7 +89,7 @@ for i in range(fold-1):
     test_idx = splitArray[i]
     for j in range(len(splitArray)):
         if j !=i:
-            training_idx.append(splitArray[j])
+            training_idx.append(splitArray[i])
             
     training_idx = np.array(np.concatenate((training_idx), axis=0))
     #print (training_idx, training_idx.shape)   

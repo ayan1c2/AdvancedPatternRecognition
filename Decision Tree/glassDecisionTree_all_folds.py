@@ -24,11 +24,9 @@ def get_binary(dataset):
     datacol = np.reshape(datacol,(datacol.shape[0],1))
     dataset =  dataset.iloc[1:,:features-1] 
     #print ((np.mean(dataset,axis=0)).shape)      
-    
     meanValue = np.mean(dataset,axis=0)       
     dataset[dataset < meanValue] = 0.0
     dataset[dataset > meanValue] = 1.0    
-    
     #print (dataset)
     #transformer = Binarizer().fit(dataset)
     #dataset = transformer.transform(dataset) 
@@ -41,10 +39,10 @@ def get_binary(dataset):
 
 #####################################################################################################################################################################
 #read Data
-#dataset = pd.read_csv("glass.data", names = ['Index', 'RI', 'Sodium', 'Magnesium', 'Aluminum', 'Silicon', 'Potassium', 'Calcium', 'Barium', 'Iron','class'])
-#dataset = dataset.drop('Index',axis=1)
+dataset = pd.read_csv("glass.data", names = ['Index', 'RI', 'Sodium', 'Magnesium', 'Aluminum', 'Silicon', 'Potassium', 'Calcium', 'Barium', 'Iron','class'])
+dataset = dataset.drop('Index',axis=1)
 
-dataset = pd.read_csv("../data/glass.data", sep=',', low_memory=False)
+dataset = pd.read_csv("glass.data", sep=',', low_memory=False)
 dataset = dataset.iloc[:, 1:].values
 dataset = pd.DataFrame(dataset, columns = cols)
 data = get_binary(dataset)  
@@ -91,14 +89,14 @@ for i in range(fold-1):
     test_idx = splitArray[i]
     for j in range(len(splitArray)):
         if j !=i:
-            training_idx.append(splitArray[j])
+            training_idx.append(splitArray[i])
             
     training_idx = np.array(np.concatenate((training_idx), axis=0))
     #print (training_idx, training_idx.shape)   
 
     data_train, data_cv_test = training_idx, test_idx
     #print ("Train data Set: ", data_train)    
-    #print ("CV Test data Set: ", data_cv_test)   
+    #print ("CV Test data Set: ", data_cv_test.shape)   
     
     data_train = pd.DataFrame(data_train, columns = cols)
     data_cv_test = pd.DataFrame(data_cv_test, columns = cols) 
@@ -107,7 +105,6 @@ for i in range(fold-1):
     """
     Train the tree, Print the tree and predict the accuracy
     """
-    #print (data_train.columns[:-1])
     tree = Dtree(data_train,data_train,data_train.columns[:-1])
     pprint(tree)
     accuracyVal = test(data_cv_test, tree)

@@ -22,12 +22,10 @@ def get_binary(dataset):
     datacol = np.array(dataset.iloc[1:,-1])
     datacol = np.reshape(datacol,(datacol.shape[0],1))
     dataset =  dataset.iloc[1:,:features-1] 
-    #print ((np.mean(dataset,axis=0)).shape)     
-    
+    #print ((np.mean(dataset,axis=0)).shape)      
     meanValue = np.mean(dataset,axis=0)       
     dataset[dataset < meanValue] = 0.0
     dataset[dataset > meanValue] = 1.0    
-    
     #print (dataset)
     #transformer = Binarizer().fit(dataset)
     #dataset = transformer.transform(dataset) 
@@ -40,10 +38,10 @@ def get_binary(dataset):
 
 #####################################################################################################################################################################
 #read Data
-#dataset = pd.read_csv("glass.data", names = ['Index', 'RI', 'Sodium', 'Magnesium', 'Aluminum', 'Silicon', 'Potassium', 'Calcium', 'Barium', 'Iron','class'])
-#dataset = dataset.drop('Index',axis=1)
+dataset = pd.read_csv("glass.data", names = ['Index', 'RI', 'Sodium', 'Magnesium', 'Aluminum', 'Silicon', 'Potassium', 'Calcium', 'Barium', 'Iron','class'])
+dataset = dataset.drop('Index',axis=1)
 
-dataset = pd.read_csv("../data/glass.data", sep=',', low_memory=False)
+dataset = pd.read_csv("glass.data", sep=',', low_memory=False)
 dataset = dataset.iloc[:, 1:].values
 dataset = pd.DataFrame(dataset, columns = cols)
 dataset = get_binary(dataset)  

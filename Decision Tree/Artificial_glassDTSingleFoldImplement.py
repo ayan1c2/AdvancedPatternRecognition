@@ -197,7 +197,7 @@ def visit(node, parent=None):
 
 graph = pydot.Dot(graph_type='graph')
 visit(tree)
-#graph.write_png('example2_graph.png')
+graph.write_png('example2_graph.png')
 
 #app_json = json.dumps(tree)
 #print(app_json)
