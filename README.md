@@ -1,4 +1,4 @@
-# AdvancedPatternRecognition
+# AdvancedPatternRecognitionCode
 
 Classification (Pattern Recognition) algorithm development with Bayesian, Anti-Bayesian, Decision Tree and Dependence Tree concepts.
 
