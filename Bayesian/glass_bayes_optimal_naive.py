@@ -9,7 +9,7 @@ from calculate_glass import calculate_accuracy, calculate_accuracy_naive
 
 ################################################################################################################################################
 #load data
-data = pd.read_csv("../data/glass.data", sep=',', low_memory=False)
+data = pd.read_csv("glass.data", sep=',', low_memory=False)
 #print "Original data:", data
 print ("Original data shape:", data.shape)
 #print data
@@ -104,7 +104,7 @@ for i in range(fold-1):
     test_idx = splitArray[i]
     for j in range(len(splitArray)):
         if j !=i:
-            training_idx.append(splitArray[j])
+            training_idx.append(splitArray[i])
             
     training_idx = np.array(np.concatenate((training_idx), axis=0))
     #print training_idx, training_idx.shape   

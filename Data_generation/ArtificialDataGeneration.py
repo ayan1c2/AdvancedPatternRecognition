@@ -120,7 +120,7 @@ for i in range (len(x1)):
 
 
 import xlsxwriter
-workbooko = xlsxwriter.Workbook('../data/generated_binary_data.xlsx')
+workbooko = xlsxwriter.Workbook('generated_binary_data.xlsx')
 worksheet = workbooko.add_worksheet() 
 row = 0
 for col, data in enumerate(data):
